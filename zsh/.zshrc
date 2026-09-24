@@ -9,3 +9,10 @@
 
    # Prompt
    eval "$(starship init zsh)"
+
+# Neovim
+export PATH="/opt/nvim-linux-x86_64/bin:$HOME/.local/bin:$PATH"
+export EDITOR=nvim
+alias vim=nvim
+alias vi=nvim
+setopt interactive_comments
