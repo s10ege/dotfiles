@@ -40,11 +40,12 @@ link:
 integrations:
     for a in claude codex opencode pi; do herdr integration install $a; done
 
-# gate every repo under ~/Projects and ~/.config with no-mistakes (repos need an origin remote)
+# gate every repo of mine (origin on github.com/s10ege) under ~/Projects and ~/.config with no-mistakes
 nm-init:
     #!/usr/bin/env bash
     for r in {{config}} ~/Projects/*/; do
-      git -C "$r" remote get-url origin >/dev/null 2>&1 || { echo "skip $r (no origin)"; continue; }
+      url=$(git -C "$r" remote get-url origin 2>/dev/null) || { echo "skip $r (no origin)"; continue; }
+      [[ "$url" == *github.com[:/]s10ege/* ]] || { echo "skip $r (not my repo)"; continue; }
       (cd "$r" && no-mistakes init) && echo "gated $r"
     done
 

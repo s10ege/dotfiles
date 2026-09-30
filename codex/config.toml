@@ -2,13 +2,16 @@ model = "gpt-6.1-sol"
 model_reasoning_effort = "high"
 [tui]
 screen_reader_detection_done = true
-status_line = ["model-with-reasoning", "current-dir", "thread-name"]
+status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-used", "used-tokens", "five-hour-limit", "weekly-limit", "estimated-thread-cost"]
 status_line_use_colors = true
 
 [tui.model_availability_nux]
 "gpt-6.1-sol" = 2
 
 [projects."/home/s10ege"]
+trust_level = "trusted"
+
+[projects."/tmp/claude-1000/-home-s10ege/f86e2070-9c90-4e62-836f-ac7ab44526b8/scratchpad/concur"]
 trust_level = "trusted"
 
 [features]
