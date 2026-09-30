@@ -7,6 +7,7 @@ Inspired by [kunchenguid/dotfiles](https://github.com/kunchenguid/dotfiles).
 
 | Path | What |
 |---|---|
+| `CHEATSHEET.md` | Quick reference: every added tool and skill, and how to use it |
 | `agents/AGENTS.md` | Global rules for every coding agent. Linked into Claude, Codex, opencode and Pi. |
 | `claude/` | Claude Code `settings.json` and statusline (linked into `~/.claude`) |
 | `codex/` | Codex `config.toml` and `hooks.json` (linked into `~/.codex`) |
