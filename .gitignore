@@ -1,0 +1,33 @@
+# Allowlist: ignore everything, then opt in to the configs this repo owns.
+/*
+!/.gitignore
+!/README.md
+!/justfile
+!/packages.txt
+
+!/agents/
+!/bash/
+!/claude/
+!/codex/
+!/no-mistakes/
+!/opencode/
+/opencode/*
+!/opencode/opencode.json
+!/opencode/tui.jsonc
+!/opencode/AGENTS.md
+!/herdr/
+/herdr/*
+!/herdr/config.toml
+!/hypr/
+!/git/
+!/lazygit/
+!/atuin/
+!/yazi/
+!/mise/
+!/nvim/
+!/starship.toml
+
+# never commit backups or local state inside allowed dirs
+*.bak
+*.bak.*
+.pre-dotfiles-backup-*/

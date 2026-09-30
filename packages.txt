@@ -1,0 +1,12 @@
+# Extra pacman packages on top of Omarchy. Install: just install
+yazi
+ffmpegthumbnailer
+poppler
+imagemagick
+atuin
+bash-preexec
+git-delta
+just
+visidata
+gitlogue
+kondo

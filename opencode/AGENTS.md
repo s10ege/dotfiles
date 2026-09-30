@@ -1,0 +1,1 @@
+/home/s10ege/.config/agents/AGENTS.md
