@@ -27,6 +27,3 @@ require("default.hypr.toggles")
 
 -- Add any other personal Hyprland configuration below.
 -- o.window("qemu", { workspace = "5" })
-
--- Claude's automation Chromium (jobhunt apply, --class=claude-chromium): open on the first empty workspace and switch to it.
-o.window("claude-chromium", { workspace = "empty" })

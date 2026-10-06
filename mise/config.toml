@@ -4,8 +4,9 @@ codex = "latest"
 gh = "latest"
 node = "26.8.2"
 opencode = "latest"
-python = "latest"
 "npm:ccusage" = "latest"
+"pipx:hermes-agent" = { version = "latest", extras = "all" }
+python = "latest"
 
 [settings.upgrade]
 auto_prune = false

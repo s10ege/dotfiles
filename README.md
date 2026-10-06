@@ -16,7 +16,7 @@ Inspired by [kunchenguid/dotfiles](https://github.com/kunchenguid/dotfiles).
 | `herdr/config.toml` | herdr keys and theme |
 | `hypr/`, `nvim/`, `starship.toml`, `git/`, `lazygit/`, `atuin/`, `mise/` | Tool configs |
 | `packages.txt` | Extra pacman packages on top of Omarchy |
-| `justfile` | `install`, `link`, `integrations`, `nm-init`, `sync` |
+| `justfile` | Optional task recipes; requires installing `just` separately |
 
 Shared skills live in `~/.agents/skills` (not in this repo). `just link` links each one into both `~/.claude/skills` and `~/.codex/skills`, so Claude and Codex always see the same skills.
 
@@ -25,7 +25,8 @@ Shared skills live in `~/.agents/skills` (not in this repo). `just link` links e
 ```bash
 git clone https://github.com/s10ege/dotfiles ~/.config   # on a fresh Omarchy, merge into the existing ~/.config
 cd ~/.config
-just install        # pacman packages
+rg -v '^\s*(#|$)' packages.txt | xargs sudo pacman -S --needed
+# Optional maintenance recipes below require just to be installed separately:
 just link           # symlinks for bash, Claude, Codex, opencode, Pi, no-mistakes, skills
 just integrations   # herdr agent-state hooks
 just nm-init        # no-mistakes gate in every repo with an origin

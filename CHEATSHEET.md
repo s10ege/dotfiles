@@ -33,17 +33,16 @@
 |---|---|---|
 | atuin | Searchable shell history | `Ctrl+R` |
 | yazi | File manager (cds you where you quit) | `y` · `q` to quit |
-| delta | Colored side-by-side diffs | automatic in `git diff`, lazygit |
-| just | Task runner | `just` lists tasks in the current folder |
-| visidata | Spreadsheet view of CSV/JSON/SQLite | `vd file.db` · `q` to quit |
 | gitlogue | Replays git history as animated typing | `gitlogue` in a repo |
 | kondo | Deletes build junk (node_modules, .venv) | `kondo ~/Projects` |
 
 ## Dotfiles (`~/.config`, repo `s10ege/dotfiles`)
+The existing task recipes below require optional `just`, which is no longer installed by default.
+
 | Task | Command |
 |---|---|
 | Save + push changes | `just -f ~/.config/justfile sync "msg"` |
 | Fix broken symlinks / share a new skill | `just -f ~/.config/justfile link` |
-| Install packages | `just -f ~/.config/justfile install` |
+| Install packages | `rg -v '^\s*(#|$)' ~/.config/packages.txt \| xargs sudo pacman -S --needed` |
 | Gate a new repo with no-mistakes | `just -f ~/.config/justfile nm-init` |
 | Add a skill | clone it into `~/.agents/src/`, link its folder into `~/.agents/skills/`, then run `link` |
