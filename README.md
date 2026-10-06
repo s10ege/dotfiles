@@ -20,7 +20,7 @@ Inspired by [kunchenguid/dotfiles](https://github.com/kunchenguid/dotfiles).
 | `nvim/`, `starship.toml`, `git/`, `lazygit/`, `atuin/`, `herdr/` | both | Tool configs, read in place from `~/.config` |
 | `hypr/` | Linux | Hyprland (read in place) |
 | `packages.txt` | Linux | Extra pacman packages on top of Omarchy |
-| `Brewfile` | Mac | Homebrew bash 5, bash-preexec, eza, AeroSpace, WezTerm, Nerd Font. No shared CLIs: Homebrew on Intel is Tier 3 and ends on 2027-09-01. |
+| `Brewfile` | Mac | Homebrew bash 5, bash-preexec, AeroSpace, WezTerm, Nerd Font. No shared CLIs: Homebrew on Intel is Tier 3 and ends on 2027-09-01. |
 | `bash/bash_profile` | Mac | Linked to `~/.bash_profile`, sources `~/.bashrc` (Mac terminals start login shells) |
 | `aerospace/aerospace.toml` | Mac | AeroSpace tiling, the Omarchy default Hyprland keys with Option for SUPER (read in place) |
 | `justfile` | both | Optional task recipes; `just` comes from mise |

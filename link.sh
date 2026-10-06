@@ -30,8 +30,17 @@ esac
 # Codex rewrites config.toml with machine state (project trust, hook hashes, notices).
 # ~/.codex/config.toml is a real, untracked file: the tracked base plus the machine tables Codex already wrote.
 cfg=~/.codex/config.toml
+pick='/^\[/ { keep = /^\[(projects|hooks\.state|notice|tui\.model_availability_nux)[].]/ } keep'
 state=""
-[ -e "$cfg" ] && state=$(awk '/^\[/ { keep = /^\[(projects|hooks\.state|notice|tui\.model_availability_nux)[].]/ } keep' "$cfg")
+[ -e "$cfg" ] && state=$(awk "$pick" "$cfg")
+# One-time migration: this file used to be a symlink into the repo, so pulling the bare
+# base dropped Codex's state. Recover it from the newest committed version that had any.
+if [ -L "$cfg" ] && [ -z "$state" ]; then
+  for r in $(git -C "$c" rev-list HEAD -- codex/config.toml 2>/dev/null); do
+    state=$(git -C "$c" show "$r:codex/config.toml" | awk "$pick")
+    [ -z "$state" ] || break
+  done
+fi
 { cat "$c/codex/config.toml"; [ -z "$state" ] || printf '\n%s\n' "$state"; } > "$cfg.tmp"
 mv -f "$cfg.tmp" "$cfg"
 

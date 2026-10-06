@@ -38,13 +38,6 @@ The user runs Claude Code and Codex at the same time, often on the same repo.
 ## Machines: Omarchy (Arch + Hyprland) and an Intel Mac (macOS 13), herdr
 
 - Dotfiles live in `~/.config` (git repo `s10ege/dotfiles`) on both; see `~/.config/README.md`. Shared CLI tools come from mise on both. Shared skills live in `~/.agents/skills` and are linked into each agent with `~/.config/link.sh`.
-- Check the OS (`uname -s`) before using anything machine-specific below.
-- Linux (Omarchy): browser windows. Any time you open one (Playwright, Puppeteer, Selenium, a browser MCP server, or a plain `chromium`/`google-chrome`/`firefox` command), give it the window class `claude-chromium`. A Hyprland rule in `~/.config/hypr/hyprland.lua` (`o.window("claude-chromium", { workspace = "empty" })`) opens it on the first empty workspace.
-  - Chromium/Chrome/Brave/Edge: `--class=claude-chromium` (Playwright: `args=["--class=claude-chromium"]`, headed when the user needs to see it; not `--app`, which ignores `--class`). Firefox: `--name claude-chromium`.
-  - Before opening, record the workspace (`hyprctl activeworkspace -j | jq .id`); after closing, switch back with `hyprctl dispatch 'hl.dsp.focus({ workspace = "<id>" })'` (this Hyprland takes Lua in `hyprctl dispatch`).
-  - Headless runs need none of this. Never touch the user's own browser windows.
-  - Reference implementation: `~/Projects/jobhunt/jh/apply.py` (`run()`).
-- macOS: none of the above applies (no Hyprland, `hyprctl` or window classes; the window manager is AeroSpace). Open browser windows normally and never touch the user's own.
 
 ## Maintaining this file
 
