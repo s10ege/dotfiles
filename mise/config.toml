@@ -17,7 +17,7 @@ python = "latest"
 "aqua:BurntSushi/ripgrep" = "latest"
 "aqua:sharkdp/fd" = "latest"
 "aqua:sxyazi/yazi" = "latest"
-"aqua:herdrdev/herdr" = "latest"
+"aqua:herdrdev/herdr" = { version = "latest", os = ["macos"] }  # Omarchy ships herdr via pacman; keep its client matching the running server
 "github:kunchenguid/no-mistakes" = "latest"
 "aqua:ajeetdsouza/zoxide" = "latest"
 "aqua:junegunn/fzf" = "latest"
