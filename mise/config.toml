@@ -7,6 +7,7 @@ opencode = "latest"
 "npm:ccusage" = "latest"
 "pipx:hermes-agent" = { version = "latest", extras = "all" }
 python = "latest"
+uv = "latest"            # mise installs pipx: packages with uv
 # Shared CLIs: upstream release binaries for linux-x64 and macos-x64
 # (atuin uses github: because the aqua entry has no macos-x64 asset)
 "aqua:neovim/neovim" = "latest"
