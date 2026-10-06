@@ -1,0 +1,65 @@
+# AeroSpace (macOS tiling WM), mirroring the Omarchy default Hyprland bindings
+# (`omarchy menu keybindings --print`) with Option standing in for SUPER.
+# Omarchy's SUPER+ALT and SUPER+CTRL bindings are mostly Omarchy menus and are left out.
+start-at-login = true
+
+[gaps]
+inner.horizontal = 5
+inner.vertical = 5
+outer.left = 10
+outer.right = 10
+outer.top = 10
+outer.bottom = 10
+
+[mode.main.binding]
+alt-enter = 'exec-and-forget open -na WezTerm'        # Terminal
+alt-shift-enter = 'exec-and-forget open -a Safari'    # Browser
+alt-shift-b = 'exec-and-forget open -a Safari'        # Browser
+alt-shift-f = 'exec-and-forget open -a Finder'        # File manager
+
+alt-w = 'close'                                       # Close window
+alt-f = 'fullscreen'                                  # Full screen
+alt-t = 'layout floating tiling'                      # Toggle floating/tiling
+alt-j = 'layout tiles horizontal vertical'            # Toggle split
+
+alt-left = 'focus left'                               # Focus window
+alt-right = 'focus right'
+alt-up = 'focus up'
+alt-down = 'focus down'
+alt-shift-left = 'move left'                          # Swap window
+alt-shift-right = 'move right'
+alt-shift-up = 'move up'
+alt-shift-down = 'move down'
+
+alt-minus = 'resize width +50'                        # Expand window left
+alt-equal = 'resize width -50'                        # Shrink window left
+alt-shift-equal = 'resize height +50'                 # Expand window down
+alt-shift-minus = 'resize height -50'                 # Shrink window up
+
+alt-tab = 'workspace --wrap-around next'              # Next workspace
+alt-shift-tab = 'workspace --wrap-around prev'        # Previous workspace
+alt-ctrl-tab = 'workspace-back-and-forth'             # Former workspace
+
+# Switch to workspace 1-10
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+alt-0 = 'workspace 10'
+
+# Move window to workspace 1-10
+alt-shift-1 = 'move-node-to-workspace --focus-follows-window 1'
+alt-shift-2 = 'move-node-to-workspace --focus-follows-window 2'
+alt-shift-3 = 'move-node-to-workspace --focus-follows-window 3'
+alt-shift-4 = 'move-node-to-workspace --focus-follows-window 4'
+alt-shift-5 = 'move-node-to-workspace --focus-follows-window 5'
+alt-shift-6 = 'move-node-to-workspace --focus-follows-window 6'
+alt-shift-7 = 'move-node-to-workspace --focus-follows-window 7'
+alt-shift-8 = 'move-node-to-workspace --focus-follows-window 8'
+alt-shift-9 = 'move-node-to-workspace --focus-follows-window 9'
+alt-shift-0 = 'move-node-to-workspace --focus-follows-window 10'

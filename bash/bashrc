@@ -1,12 +1,29 @@
 # Omarchy environment (OMARCHY_PATH + PATH), needed even for non-interactive shells
 [[ -r /usr/share/omarchy/default/bash/env-bootstrap ]] && source /usr/share/omarchy/default/bash/env-bootstrap
+# Homebrew environment on the Intel Mac
+[[ -x /usr/local/bin/brew ]] && eval "$(/usr/local/bin/brew shellenv)"
 
 # If not running interactively, don't do anything else (leave this above the rc source)
 [[ $- != *i* ]] && return
 
 # All the default Omarchy aliases and functions
 # (don't mess with these directly, just overwrite them here!)
-source "$OMARCHY_PATH/default/bash/rc"
+if [[ -n ${OMARCHY_PATH:-} && -r $OMARCHY_PATH/default/bash/rc ]]; then
+  source "$OMARCHY_PATH/default/bash/rc"
+else
+  # No Omarchy (macOS): the few Omarchy defaults relied on here
+  export EDITOR=nvim
+  command -v mise >/dev/null && eval "$(mise activate bash)"
+  command -v starship >/dev/null && eval "$(starship init bash)"
+  command -v zoxide >/dev/null && eval "$(zoxide init bash)"
+  command -v fzf >/dev/null && eval "$(fzf --bash)"
+  if command -v eza >/dev/null; then
+    alias ls='eza -lh --group-directories-first --icons=auto'
+    alias lsa='ls -a'
+    alias lt='eza --tree --level=2 --long --icons --git'
+    alias lta='lt -a'
+  fi
+fi
 
 # Add your own exports, aliases, and functions here.
 #
@@ -17,7 +34,7 @@ alias cc='claude --dangerously-skip-permissions'
 alias co='codex --approve-for-me'   # was --full-auto in older Codex
 
 jh() {
-  cd /home/s10ege/Projects/jobhunt && ./jh.sh "$@"
+  cd "$HOME/Projects/jobhunt" && ./jh.sh "$@"
 }
 
 # yazi: `y` opens the file manager and cds into the directory you quit in
@@ -30,10 +47,14 @@ y() {
   rm -f -- "$tmp"
 }
 
-# atuin: searchable shell history on Ctrl+R (needs bash-preexec)
-if command -v atuin >/dev/null && [[ -f /usr/share/bash-preexec/bash-preexec.sh ]]; then
-  source /usr/share/bash-preexec/bash-preexec.sh
-  eval "$(atuin init bash)"
-fi
+# atuin: searchable shell history on Ctrl+R (needs bash-preexec: Arch path, then Homebrew)
+for f in /usr/share/bash-preexec/bash-preexec.sh "${HOMEBREW_PREFIX:-/usr/local}/etc/profile.d/bash-preexec.sh"; do
+  if command -v atuin >/dev/null && [[ -f $f ]]; then
+    source "$f"
+    eval "$(atuin init bash)"
+    break
+  fi
+done
+unset f
 
-. "$HOME/.local/share/../bin/env"
+[[ -r $HOME/.local/bin/env ]] && . "$HOME/.local/bin/env"

@@ -36,13 +36,24 @@
 | gitlogue | Replays git history as animated typing | `gitlogue` in a repo |
 | kondo | Deletes build junk (node_modules, .venv) | `kondo ~/Projects` |
 
-## Dotfiles (`~/.config`, repo `s10ege/dotfiles`)
-The existing task recipes below require optional `just`, which is no longer installed by default.
-
+## Dotfiles (`~/.config`, repo `s10ege/dotfiles`, Omarchy and Mac)
 | Task | Command |
 |---|---|
-| Save + push changes | `just -f ~/.config/justfile sync "msg"` |
-| Fix broken symlinks / share a new skill | `just -f ~/.config/justfile link` |
-| Install packages | `rg -v '^\s*(#|$)' ~/.config/packages.txt \| xargs sudo pacman -S --needed` |
+| New machine (Linux or Mac) | clone to `~/.config`, then `~/.config/bootstrap.sh` (see README) |
+| Mac, once: bash 5 as login shell | `echo /usr/local/bin/bash \| sudo tee -a /etc/shells && chsh -s /usr/local/bin/bash` |
+| Fix broken symlinks / share a new skill | `~/.config/link.sh` (or `just -f ~/.config/justfile link`) |
+| Update shared CLI tools (both) | `mise up` |
+| Install packages | Linux: `~/.config/bootstrap.sh` (pacman `packages.txt`) · Mac: `brew bundle --file ~/.config/Brewfile` |
+| Save + push changes to tracked files | `just -f ~/.config/justfile sync "msg"` (`git add` new files first) |
 | Gate a new repo with no-mistakes | `just -f ~/.config/justfile nm-init` |
-| Add a skill | clone it into `~/.agents/src/`, link its folder into `~/.agents/skills/`, then run `link` |
+| Add a skill | clone it into `~/.agents/src/`, link its folder into `~/.agents/skills/`, then run `link.sh` |
+
+## Mac window manager (AeroSpace, Option = Omarchy's SUPER)
+| What | Keys |
+|---|---|
+| Terminal / browser / Finder | `Opt+Return` · `Opt+Shift+Return` · `Opt+Shift+F` |
+| Close / full screen / float / split | `Opt+W` · `Opt+F` · `Opt+T` · `Opt+J` |
+| Focus / swap window | `Opt+Arrows` · `Opt+Shift+Arrows` |
+| Workspace / move window there | `Opt+1..0` · `Opt+Shift+1..0` |
+| Next / previous / former workspace | `Opt+Tab` · `Opt+Shift+Tab` · `Opt+Ctrl+Tab` |
+| Resize | `Opt+-` / `Opt+=` (width) · `Opt+Shift+-` / `Opt+Shift+=` (height) |

@@ -1,6 +1,7 @@
 return {
 	{
 		name = "theme-hotreload",
+		cond = vim.uv.fs_stat(vim.fn.expand("~/.local/state/omarchy")) ~= nil,
 		dir = vim.fn.stdpath("config"),
 		lazy = false,
 		priority = 1000,

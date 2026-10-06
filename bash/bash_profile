@@ -1,0 +1,2 @@
+# macOS: terminal apps start login shells, which read this file instead of ~/.bashrc.
+[[ -r ~/.bashrc ]] && source ~/.bashrc

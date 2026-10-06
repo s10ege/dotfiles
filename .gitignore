@@ -5,6 +5,9 @@
 !/CHEATSHEET.md
 !/justfile
 !/packages.txt
+!/Brewfile
+!/bootstrap.sh
+!/link.sh
 
 !/agents/
 !/bash/
@@ -27,6 +30,8 @@
 !/mise/
 !/nvim/
 !/starship.toml
+!/wezterm/
+!/aerospace/
 
 # never commit backups or local state inside allowed dirs
 *.bak

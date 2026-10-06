@@ -1,4 +1,5 @@
-return {
+-- Omarchy only: these themes back its theme switcher.
+local specs = {
 	-- Load all theme plugins but don't apply them
 	-- This ensures all colorschemes are available for hot-reloading
 	--
@@ -118,3 +119,5 @@ return {
 		priority = 1000,
 	},
 }
+
+return vim.uv.fs_stat(vim.fn.expand("~/.local/state/omarchy")) and specs or {}

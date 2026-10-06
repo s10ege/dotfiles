@@ -7,6 +7,20 @@ opencode = "latest"
 "npm:ccusage" = "latest"
 "pipx:hermes-agent" = { version = "latest", extras = "all" }
 python = "latest"
+# Shared CLIs: upstream release binaries for linux-x64 and macos-x64
+# (atuin uses github: because the aqua entry has no macos-x64 asset)
+"aqua:neovim/neovim" = "latest"
+"aqua:starship/starship" = "latest"
+"github:atuinsh/atuin" = "latest"
+"aqua:jesseduffield/lazygit" = "latest"
+"aqua:casey/just" = "latest"
+"aqua:BurntSushi/ripgrep" = "latest"
+"aqua:sharkdp/fd" = "latest"
+"aqua:sxyazi/yazi" = "latest"
+"aqua:herdrdev/herdr" = "latest"
+"github:kunchenguid/no-mistakes" = "latest"
+"aqua:ajeetdsouza/zoxide" = "latest"
+"aqua:junegunn/fzf" = "latest"
 
 [settings.upgrade]
 auto_prune = false

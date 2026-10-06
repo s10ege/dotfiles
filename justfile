@@ -12,33 +12,23 @@ install:
 
 # (re)create symlinks from agent/home dirs into this repo, and share skills with Claude and Codex
 link:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    c={{config}}
-    ln -sfn "$c/bash/bashrc"              ~/.bashrc
-    ln -sfn "$c/agents/AGENTS.md"         ~/.claude/CLAUDE.md
-    ln -sfn "$c/claude/settings.json"     ~/.claude/settings.json
-    ln -sfn "$c/claude/statusline.sh"     ~/.claude/statusline.sh
-    ln -sfn "$c/agents/AGENTS.md"         ~/.codex/AGENTS.md
-    ln -sfn "$c/codex/config.toml"        ~/.codex/config.toml
-    ln -sfn "$c/codex/hooks.json"         ~/.codex/hooks.json
-    ln -sfn "$c/agents/AGENTS.md"         "$c/opencode/AGENTS.md"
-    mkdir -p ~/.pi/agent ~/.no-mistakes
-    ln -sfn "$c/agents/AGENTS.md"         ~/.pi/agent/AGENTS.md
-    ln -sfn "$c/no-mistakes/config.yaml"  ~/.no-mistakes/config.yaml
-    mkdir -p ~/.agents/skills ~/.claude/skills ~/.codex/skills
-    for s in ~/.agents/skills/*/; do
-      n=$(basename "$s")
-      for d in ~/.claude/skills ~/.codex/skills; do
-        [ -e "$d/$n" ] && [ ! -L "$d/$n" ] && { echo "skip $d/$n (real dir)"; continue; }
-        ln -sfn "$HOME/.agents/skills/$n" "$d/$n"
-      done
-    done
-    echo "linked"
+    {{justfile_directory()}}/link.sh
 
 # install herdr agent-state hooks for every agent
 integrations:
-    for a in claude codex opencode pi; do herdr integration install $a; done
+    #!/usr/bin/env bash
+    set -euo pipefail
+    # The tracked Claude/Codex hooks call these scripts via $HOME; installing straight into
+    # ~/.claude and ~/.codex would add a second, absolute-path hook to the tracked files.
+    t=$(mktemp -d)
+    mkdir -p "$t/.claude" "$t/.codex"
+    HOME=$t herdr integration install claude
+    HOME=$t herdr integration install codex
+    mkdir -p ~/.claude/hooks
+    cp "$t/.claude/hooks/herdr-agent-state.sh" ~/.claude/hooks/
+    cp "$t/.codex/herdr-agent-state.sh" ~/.codex/
+    rm -rf "$t"
+    for a in opencode pi; do herdr integration install $a; done
 
 # gate every repo of mine (origin on github.com/s10ege) under ~/Projects and ~/.config with no-mistakes
 nm-init:
@@ -49,8 +39,9 @@ nm-init:
       (cd "$r" && no-mistakes init) && echo "gated $r"
     done
 
-# commit and push dotfiles changes
+# commit and push changes to tracked files (new files need a manual `git add` first)
 sync msg="update dotfiles":
-    git -C {{config}} add -A
+    git -C {{config}} add -u
+    git -C {{config}} diff --cached --stat
     git -C {{config}} commit -m "{{msg}}" || true
     git -C {{config}} push
