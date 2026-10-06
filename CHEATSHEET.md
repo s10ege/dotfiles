@@ -13,6 +13,7 @@
 ## Skills (Claude and Codex)
 | Skill | What it does | Use |
 |---|---|---|
+| dotfiles-sync | Reviews approved groups, commits/pushes, translates and applies on the peer | `/dotfiles-sync` · `$dotfiles-sync` (Codex); add `apply` to pull locally |
 | handoff | Summarizes the session so a fresh one (or the other agent) can continue | `/handoff` |
 | i-have-adhd | Answer-first, short, numbered replies | `/i-have-adhd` · "stop adhd mode" |
 | ponytail | Simplest possible solution, no over-engineering | "ponytail" / "be lazy" (auto on coding tasks) |

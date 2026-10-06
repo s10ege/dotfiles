@@ -45,6 +45,14 @@ fi
 mv -f "$cfg.tmp" "$cfg"
 
 mkdir -p ~/.agents/skills ~/.claude/skills ~/.codex/skills
+# Repo-owned skills join the shared skill directory; keep third-party skills in place.
+for s in "$c"/agents/skills/*/; do
+  [ -d "$s" ] || continue
+  n=$(basename "$s")
+  d="$HOME/.agents/skills/$n"
+  [ -e "$d" ] && [ ! -L "$d" ] && { echo "skip $d (real dir)"; continue; }
+  ln -sfn "$c/agents/skills/$n" "$d"
+done
 for s in ~/.agents/skills/*/; do
   [ -d "$s" ] || continue
   n=$(basename "$s")

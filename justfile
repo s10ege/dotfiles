@@ -39,7 +39,7 @@ nm-init:
       (cd "$r" && no-mistakes init) && echo "gated $r"
     done
 
-# commit and push changes to tracked files (new files need a manual `git add` first)
+# commit and push tracked files; /dotfiles-sync reviews groups and translates for the other OS
 sync msg="update dotfiles":
     git -C {{config}} add -u
     git -C {{config}} diff --cached --stat

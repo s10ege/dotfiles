@@ -10,6 +10,8 @@
 !/link.sh
 
 !/agents/
+!/agents/skills/
+/agents/local/
 !/bash/
 !/claude/
 !/codex/
