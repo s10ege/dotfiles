@@ -5,7 +5,7 @@ Shared by Claude Code, Codex, opencode and Pi. Source of truth: `~/.config/agent
 ## Writing and commits
 
 - Never use the em dash "—". Use plain dash "-" instead.
-- When writing commit messages, NEVER auto-add your agent name as co-author.
+- Never add agent co-author trailers or "Generated with" lines to commits.
 - Never manually modify CHANGELOG.md files or any files that are marked as auto-generated.
 
 ## Engineering bar
@@ -30,7 +30,7 @@ Shared by Claude Code, Codex, opencode and Pi. Source of truth: `~/.config/agent
 
 The user runs Claude Code and Codex at the same time, often on the same repo.
 
-- Assume another agent may have uncommitted work here. Before committing, check `git status` and `git diff`, and stage only your own files or hunks.
+- Use the [git skill](skills/git/SKILL.md) whenever you commit, push or open a PR; for `~/.config` itself, dotfiles-sync stays the flow.
 - Never run `git add -A`, `git add .`, `git stash`, `git reset --hard`, `git checkout -- .`, `git clean`, or a rebase that would touch changes you did not make.
 - For parallel work on one repo, use a separate git worktree per agent (`herdr worktree ...`) instead of sharing a working tree.
 - Do not edit shared agent config (`~/.config/agents`, `~/.claude/settings.json`, `~/.codex/config.toml`) unless asked; the dotfiles repo in `~/.config` owns it.

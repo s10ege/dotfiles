@@ -11,6 +11,9 @@ ln -sfn "$c/claude/settings.json"     ~/.claude/settings.json
 ln -sfn "$c/claude/statusline.sh"     ~/.claude/statusline.sh
 ln -sfn "$c/agents/AGENTS.md"         ~/.codex/AGENTS.md
 ln -sfn "$c/codex/hooks.json"         ~/.codex/hooks.json
+# Keep machine-generated default.rules intact; load shared Git prohibitions alongside it.
+mkdir -p ~/.codex/rules
+ln -sfn "$c/codex/rules/git-guard.rules" ~/.codex/rules/git-guard.rules
 ln -sfn ../agents/AGENTS.md           "$c/opencode/AGENTS.md"
 ln -sfn "$c/agents/AGENTS.md"         ~/.pi/agent/AGENTS.md
 ln -sfn "$c/no-mistakes/config.yaml"  ~/.no-mistakes/config.yaml

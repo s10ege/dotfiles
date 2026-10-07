@@ -1,0 +1,10 @@
+# Loaded alongside machine-owned default.rules; never replace its approvals.
+# Literal prefixes only: global Git flags and reordered arguments are a known gap.
+# https://developers.openai.com/codex/rules/ (outside-sandbox policy, not a shell guard).
+prefix_rule(pattern=["git", "add", ["-A", "--all", ".", "./"]], decision="forbidden", justification="Use the git skill and git apply --cached for your exact patch")
+prefix_rule(pattern=["git", "add", "--", [".", "./"]], decision="forbidden", justification="Stage only your own exact patch")
+prefix_rule(pattern=["git", "stash"], decision="forbidden", justification="Preserve other agents' work, including stash list")
+prefix_rule(pattern=["git", "reset", "--hard"], decision="forbidden", justification="Preserve other agents' work")
+prefix_rule(pattern=["git", "checkout", "--", [".", "./"]], decision="forbidden", justification="Preserve other agents' work")
+prefix_rule(pattern=["git", "co", "--", [".", "./"]], decision="forbidden", justification="Preserve other agents' work")
+prefix_rule(pattern=["git", "clean"], decision="forbidden", justification="Preserve other agents' untracked work")

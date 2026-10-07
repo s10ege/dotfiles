@@ -12,8 +12,8 @@ Inspired by [kunchenguid/dotfiles](https://github.com/kunchenguid/dotfiles).
 | `CHEATSHEET.md` | both | Quick reference: every added tool and skill, and how to use it |
 | `agents/skills/` | both | Repo-owned skills, starting with `dotfiles-sync`; linked through `~/.agents/skills` into Claude and Codex |
 | `agents/AGENTS.md` | both | Global rules for every coding agent. Linked into Claude, Codex, opencode and Pi. |
-| `claude/` | both | Claude Code `settings.json` and statusline (linked into `~/.claude`) |
-| `codex/` | both | Codex base `config.toml` and `hooks.json` (see Codex config below) |
+| `claude/` | both | Claude Code `settings.json`, statusline and Bash Git guard |
+| `codex/` | both | Codex base `config.toml`, `hooks.json` and shared Git guard rules (see Codex config below) |
 | `no-mistakes/config.yaml` | both | Global no-mistakes gate config (reviewer: claude, then codex) |
 | `bash/bashrc` | both | Linked to `~/.bashrc`. Aliases `cc` (Claude) and `co` (Codex), `y` (yazi), atuin. Uses Omarchy's rc when present, else sets up the few Omarchy defaults itself. |
 | `mise/config.toml` | both | Every shared CLI tool and its version (agents, gh, node, nvim, starship, atuin, lazygit, just, rg, fd, yazi, herdr, no-mistakes, zoxide, fzf, gitleaks) |
@@ -60,7 +60,7 @@ just nm-init        # no-mistakes gate in every repo with an origin
 ## How things fit
 
 - **mise and PATH on Linux.** mise now provides the shared CLIs on both machines, but the pacman/Omarchy copies stay installed on Linux. Interactive shells run `mise activate`, which puts mise's versions first. Non-interactive login shells (ssh commands, the Hyprland session) get Omarchy's PATH, where `/usr/bin` comes before `~/.local/share/mise/shims`, so they keep the pacman copies.
-- **Codex config.** Codex writes machine state into `~/.codex/config.toml` (project trust, hook hashes, notices). That file is therefore a real, untracked file, not a link: `link.sh` rebuilds it as `codex/config.toml` (the tracked base) plus the machine tables it finds in the existing file. Change shared Codex settings in `codex/config.toml` and rerun `link.sh`; settings changed inside Codex are overwritten on the next link.
+- **Codex config.** Codex writes machine state into `~/.codex/config.toml` (project trust, hook hashes, notices). That file is therefore a real, untracked file, not a link: `link.sh` rebuilds it as `codex/config.toml` (the tracked base) plus the machine tables it finds in the existing file. Change shared Codex settings in `codex/config.toml` and rerun `link.sh`; settings changed inside Codex are overwritten on the next link. `link.sh` links `codex/rules/git-guard.rules` alongside the machine-owned `~/.codex/rules/default.rules`, preserving existing approvals.
 - **Claude settings** stay a plain link: they are your own choices, and the herdr hook calls its script through `$HOME`, so the file works on both machines. `just integrations` installs only the hook scripts for Claude and Codex so herdr does not add a second, absolute-path hook.
 - **nvim theme.** On Omarchy `link.sh` links `nvim/lua/plugins/theme.lua` (untracked) to the current Omarchy theme, and the theme switcher plugins load. Without Omarchy, nvim uses tokyonight-night.
 
