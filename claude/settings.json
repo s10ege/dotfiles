@@ -1,4 +1,7 @@
 {
+  "permissions": {
+    "defaultMode": "dontAsk"
+  },
   "model": "opus",
   "hooks": {
     "SessionStart": [
