@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Dedicated Chromium for agents (scraping, browser tests). Own profile + fixed debug port, so there
+# are no per-connection approval prompts and the user's own Chromium is never touched.
+# Window opens on workspace 5 without switching view (Hyprland rule in ~/.config/hypr/hyprland.lua).
+# Prints the CDP websocket URL on stdout: export CHROME_DEVTOOLS_AXI_BROWSER_URL="$(scraper-chromium)"
+set -euo pipefail
+port=9223
+profile="${XDG_DATA_HOME:-$HOME/.local/share}/scraper-chromium"
+ver() { curl -fs "127.0.0.1:$port/json/version" | python3 -c 'import sys,json;print(json.load(sys.stdin)["webSocketDebuggerUrl"])'; }
+
+if ! ver 2>/dev/null; then
+  mkdir -p "$profile"
+  setsid nohup chromium --class=scraper-chromium --user-data-dir="$profile" \
+    --remote-debugging-port=$port --no-first-run --no-default-browser-check about:blank >/dev/null 2>&1 &
+  for _ in $(seq 30); do ver 2>/dev/null && exit 0; sleep 0.5; done
+  echo "scraper-chromium: debug port $port did not come up" >&2; exit 1
+fi

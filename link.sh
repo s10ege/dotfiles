@@ -23,6 +23,8 @@ case $(uname -s) in
     # Omarchy theme for nvim; nvim falls back to tokyonight when this link is absent.
     t="$HOME/.local/state/omarchy/current/theme/neovim.lua"
     [ -e "$t" ] && ln -sfn "$t" "$c/nvim/lua/plugins/theme.lua"
+    mkdir -p ~/.local/bin
+    ln -sfn "$c/agents/bin/scraper-chromium" ~/.local/bin/scraper-chromium
     ;;
   Darwin)
     # Terminal apps start login shells, which read ~/.bash_profile instead of ~/.bashrc.

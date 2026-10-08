@@ -39,6 +39,11 @@ The user runs Claude Code and Codex at the same time, often on the same repo.
 
 - Dotfiles live in `~/.config` (git repo `s10ege/dotfiles`) on both; see `~/.config/README.md`. Shared CLI tools come from mise on both. Shared skills live in `~/.agents/skills` and are linked into each agent with `~/.config/link.sh`.
 
+## Browser automation (Omarchy)
+
+- For agent browsing, scraping or browser tests use `scraper-chromium` (dedicated profile, fixed debug port 9223, no approval prompts). It prints the CDP websocket URL: `export CHROME_DEVTOOLS_AXI_BROWSER_URL="$(scraper-chromium)"`.
+- Its window is pinned to workspace 5 silently by a Hyprland rule; never launch another Chromium, never use or touch the user's own Chromium or tabs, open tabs with `newpage --background`, and close tabs you are done with.
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session.
