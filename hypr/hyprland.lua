@@ -29,4 +29,4 @@ require("default.hypr.toggles")
 -- o.window("qemu", { workspace = "5" })
 
 -- Agent scraping browser (agents/bin/scraper-chromium): always workspace 5, never switch the view or take focus.
-o.window({ class = "^scraper-chromium$" }, { workspace = "5 silent", no_initial_focus = true })
+o.window({ class = "^scraper-chromium$" }, { workspace = "5 silent", no_initial_focus = true, focus_on_activate = false, suppress_event = "activate activatefocus" })
