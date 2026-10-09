@@ -1,4 +1,9 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
   "permissions": {
     "defaultMode": "dontAsk"
   },
@@ -66,6 +71,7 @@
   },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "attribution": false,
-  "theme": "auto"
+  "theme": "auto",
+  "showClearContextOnPlanAccept": true,
+  "agentPushNotifEnabled": true
 }
