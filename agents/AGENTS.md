@@ -40,6 +40,10 @@ The user runs Claude Code and Codex at the same time, often on the same repo.
 
 - Dotfiles live in `~/.config` (git repo `s10ege/dotfiles`) on both; see `~/.config/README.md`. Shared CLI tools come from mise on both. Shared skills live in `~/.agents/skills` and are linked into each agent with `~/.config/link.sh`.
 
+## Web research
+
+- Search DuckDuckGo: `curl -s -A 'Mozilla/5.0' 'https://html.duckduckgo.com/html/?q=<query>'` (result links are the `uddg=` targets). Read pages with `curl`, `gh` or `r.jina.ai/<url>`. Leave the Firecrawl MCP tools unused; their credits belong to project code.
+
 ## Browser automation (Omarchy)
 
 - For agent browsing, scraping or browser tests use `scraper-chromium` (dedicated profile, fixed debug port 9223, no approval prompts). It prints the CDP websocket URL: `export CHROME_DEVTOOLS_AXI_BROWSER_URL="$(scraper-chromium)"`.
