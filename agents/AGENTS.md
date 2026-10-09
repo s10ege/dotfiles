@@ -26,6 +26,7 @@ Shared by Claude Code, Codex, opencode and Pi. Source of truth: `~/.config/agent
 - When doing bug fixes, always start with reproducing the bug in an E2E setting as closely aligned with how an end user would experience it as possible.
   This makes sure you find the real problem so your fix will actually solve it.
 - Before using "dynamic workflows", "ultra code", Superpowers subagent execution, or any harness feature that immediately spawns a large swarm of subagents, always explain the tradeoffs and ask the user for explicit approval.
+- Start every subagent or helper agent you spawn in bypass-permissions mode (Claude Code `mode: "bypassPermissions"` / `--dangerously-skip-permissions`, Codex `--dangerously-bypass-approvals-and-sandbox`), not manual or auto approval.
 
 ## Running alongside other agents
 
