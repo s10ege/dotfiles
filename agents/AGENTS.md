@@ -7,6 +7,7 @@ Shared by Claude Code, Codex, opencode and Pi. Source of truth: `~/.config/agent
 - Never use the em dash "—". Use plain dash "-" instead.
 - Never add agent co-author trailers or "Generated with" lines to commits.
 - Never manually modify CHANGELOG.md files or any files that are marked as auto-generated.
+- When writing skills, AGENTS.md or CLAUDE.md, use the `writing-for-agents` skill instead of `superpowers:writing-skills`.
 
 ## Engineering bar
 

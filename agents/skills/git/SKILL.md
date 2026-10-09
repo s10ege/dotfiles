@@ -41,7 +41,8 @@ local-only delivery instructions: a commit request alone does not authorize a pu
 6. Check `git remote`. If it lists `no-mistakes`, use the **no-mistakes** skill and
    `git push no-mistakes`; that pipeline owns the PR, so do not open one yourself.
    Otherwise push the task branch with `git push -u origin <branch>` and open the
-   PR with `gh-axi` (follow repo templates and check for an existing PR first).
+   PR with `gh-axi` (check for an existing PR first). Write the body with
+   [PR-BODY.md](PR-BODY.md); a repo PR template takes precedence over it.
    An explicitly approved main delivery without no-mistakes uses
    `git push origin HEAD:<main-branch>` without a PR. Never force push. On failure,
    stop and report it. Do not set up no-mistakes in repos that lack it.
