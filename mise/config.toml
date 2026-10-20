@@ -5,7 +5,6 @@ gh = "latest"
 node = "26.8.2"
 opencode = "latest"
 "npm:ccusage" = "latest"
-"pipx:hermes-agent" = { version = "latest", extras = "all" }
 python = "latest"
 uv = "latest"            # mise installs pipx: packages with uv
 # Shared CLIs: upstream release binaries for linux-x64 and macos-x64

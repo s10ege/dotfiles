@@ -69,9 +69,17 @@
       }
     }
   },
+  "modelSettings": {
+    "claude-sonnet-5-5": {
+      "effortLevel": "medium"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "showClearContextOnPlanAccept": true,
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto",
-  "showClearContextOnPlanAccept": true,
   "agentPushNotifEnabled": true
 }

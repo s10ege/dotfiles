@@ -1,0 +1,6 @@
+interface:
+  display_name: "VPS Run"
+  short_description: "Run an agreed plan unattended on the VPS"
+  default_prompt: "Use $vps-run to execute the agreed plan unattended on the VPS."
+policy:
+  allow_implicit_invocation: false
